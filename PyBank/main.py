@@ -5,7 +5,7 @@ from pathlib import Path
 print(f"Current Working Directory: {Path.cwd()}")
 
 # file path
-csvpath = Path("Homework/02-Python/Instructions/PyBank/Resources/budget_data.csv")
+csvpath = Path("PyBank/Resources/budget_data.csv")
 
 # initialize variables
 count_months = 0
@@ -20,8 +20,8 @@ min_change_date = []
 total_change = 0
 
 # open csv
-with open(csvpath, 'r') as file:
-    csvreader = csv.reader(file, delimiter=',')
+with open(csvpath, 'r') as inputfile:
+    csvreader = csv.reader(inputfile, delimiter=',')
     next(csvreader)                            # skip first row - header
 
     for row in csvreader:
@@ -41,12 +41,26 @@ with open(csvpath, 'r') as file:
             min_change = change
             min_change_date = row[0]
         last_month_profit_loss = profit_loss   # assign p/l to last_month variable for next loop
-file.close()                                   # close csv file
+inputfile.close()                                   # close csv file
 
-print(f"financial analysis")
-print(f"--------------------")
-print(f"Total Months:  {count_months}")
-print(f"Total:   ${total_profit_loss}")
-print(f"Average change:  ${round(total_change/(count_months-1))}")  # should take out the first month with no change
-print(f"The greatest increase in profits over the entire period: {max_change_date} (${max_change})")
-print(f"The greatest decrease in profits over the entire period: {min_change_date} (${min_change})")
+report = (f"\
+financial analysis\n\
+--------------------\n\
+Total Months:  {count_months}\n\
+Total:   ${total_profit_loss}\n\
+Average change:  ${round(total_change/(count_months-1))}\n\
+The greatest increase in profits over the entire period: {max_change_date} (${max_change})\n\
+The greatest decrease in profits over the entire period: {min_change_date} (${min_change})"\
+)
+
+print(report)
+
+# Set the output file path
+output_path = Path("PyBank/output.txt")
+
+# Open the output_path as a file object in "write" mode ('w')
+# Write a header line and write the contents of 'text' to the file
+with open(output_path, 'w') as outputfile:
+    outputfile.write(report)
+
+outputfile.close()
