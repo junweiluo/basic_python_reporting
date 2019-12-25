@@ -55,8 +55,6 @@ for sales_item in sales.values():
             report[sales_item["Menu_item"]]["03-cogs"] += price_cost['cost'] * sales_item["Quantity"]
             report[sales_item["Menu_item"]]["04-profit"] = report[sales_item["Menu_item"]]["02-revenue"] - report[sales_item["Menu_item"]]["03-cogs"]
             match = 1
-#        else:
-#            print(f"{sales_item} does not equal {item_on_menu}! NO MATCH!")  # there is a lot to print, I think this is wrong.
     if match == 0:
         print(f"{sales_item} does not equal any item on menu! NO MATCH!")   # might be something wrong.
 
