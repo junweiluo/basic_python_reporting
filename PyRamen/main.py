@@ -56,7 +56,7 @@ for sales_item in sales.values():
             report[sales_item["Menu_item"]]["04-profit"] = report[sales_item["Menu_item"]]["02-revenue"] - report[sales_item["Menu_item"]]["03-cogs"]
             match = 1
     if match == 0:
-        print(f"{sales_item} does not equal any item on menu! NO MATCH!")   # might be something wrong.
+        print(f"{sales_item} does not equal any item on menu! NO MATCH!")   # There is some confusion on the instruction file.
 
 # output result
 output_path = Path("PyRamen/output.txt")
