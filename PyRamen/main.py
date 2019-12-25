@@ -1,6 +1,5 @@
 import csv
 from pathlib import Path
-import collections
 
 # find out current directory
 print(f"Current Working Directory: {Path.cwd()}")

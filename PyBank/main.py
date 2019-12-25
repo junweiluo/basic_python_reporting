@@ -55,11 +55,9 @@ The greatest decrease in profits over the entire period: {min_change_date} (${mi
 
 print(report)
 
-# Set the output file path
+# Set the output file path and write out
 output_path = Path("PyBank/output.txt")
 
-# Open the output_path as a file object in "write" mode ('w')
-# Write a header line and write the contents of 'text' to the file
 with open(output_path, 'w') as outputfile:
     outputfile.write(report)
 
