@@ -60,8 +60,6 @@ for sales_item in sales.values():
 # output result
 output_path = Path("PyRamen/output.txt")
 
-# Open the output_path as a file object in "write" mode ('w')
-# Write a header line and write the contents of 'text' to the file
 with open(output_path, 'w') as outputfile:
     for k, v in report.items():
         outputfile.write(f"{str(k)} {str(v)}")
