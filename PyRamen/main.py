@@ -9,12 +9,12 @@ print(f"Current Working Directory: {Path.cwd()}")
 menupath = Path("PyRamen/Resources/menu_data.csv")
 salespath = Path("PyRamen/Resources/sales_data.csv")
 
-# initialize variables
+# initialize variables of dicts
 menu = {}
 sales = {}
 report = {}
 
-# open csv
+# open sales and menu data, and put into dicts
 with open(menupath, 'r') as menufile:
     menureader = csv.reader(menufile, delimiter=',')
     next(menureader)
@@ -23,6 +23,7 @@ with open(menupath, 'r') as menufile:
             "price": float(row[3]),
             "cost": float(row[4]),
             }
+
 menufile.close()
 
 with open(salespath, 'r') as salesfile:
@@ -41,8 +42,10 @@ with open(salespath, 'r') as salesfile:
                 "03-cogs": 0,
                 "04-profit": 0,
                 }
+
 salesfile.close()
 
+# nested loop through sales and menu to find match, and then accumulate metrics
 for sales_item in sales.values():
     match = 0
     for item_on_menu, price_cost in menu.items():
@@ -52,7 +55,20 @@ for sales_item in sales.values():
             report[sales_item["Menu_item"]]["03-cogs"] += price_cost['cost'] * sales_item["Quantity"]
             report[sales_item["Menu_item"]]["04-profit"] = report[sales_item["Menu_item"]]["02-revenue"] - report[sales_item["Menu_item"]]["03-cogs"]
             match = 1
+#        else:
+#            print(f"{sales_item} does not equal {item_on_menu}! NO MATCH!")  # there is a lot to print, I think this is wrong.
     if match == 0:
         print(f"{sales_item} does not equal any item! NO MATCH!")   # might be something wrong.
 
-print(report)
+# output result
+output_path = Path("PyRamen/output.txt")
+
+# Open the output_path as a file object in "write" mode ('w')
+# Write a header line and write the contents of 'text' to the file
+with open(output_path, 'w') as outputfile:
+    for k, v in report.items():
+        outputfile.write(f"{str(k)} {str(v)}")
+        outputfile.write(f"\n")
+        
+
+outputfile.close()
