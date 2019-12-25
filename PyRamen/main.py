@@ -23,6 +23,7 @@ with open(menupath, 'r') as menufile:
             "price": float(row[3]),
             "cost": float(row[4]),
             }
+menufile.close()
 
 with open(salespath, 'r') as salesfile:
     salesreader = csv.reader(salesfile, delimiter=',')
@@ -40,7 +41,7 @@ with open(salespath, 'r') as salesfile:
                 "03-cogs": 0,
                 "04-profit": 0,
                 }
-
+salesfile.close()
 
 for sales_item in sales.values():
     match = 0
@@ -52,6 +53,6 @@ for sales_item in sales.values():
             report[sales_item["Menu_item"]]["04-profit"] = report[sales_item["Menu_item"]]["02-revenue"] - report[sales_item["Menu_item"]]["03-cogs"]
             match = 1
     if match == 0:
-        print(f"{sales_item} does not equal any item! NO MATCH!") 
+        print(f"{sales_item} does not equal any item! NO MATCH!")   # might be something wrong.
 
 print(report)
