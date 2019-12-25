@@ -58,7 +58,7 @@ for sales_item in sales.values():
 #        else:
 #            print(f"{sales_item} does not equal {item_on_menu}! NO MATCH!")  # there is a lot to print, I think this is wrong.
     if match == 0:
-        print(f"{sales_item} does not equal any item! NO MATCH!")   # might be something wrong.
+        print(f"{sales_item} does not equal any item on menu! NO MATCH!")   # might be something wrong.
 
 # output result
 output_path = Path("PyRamen/output.txt")
