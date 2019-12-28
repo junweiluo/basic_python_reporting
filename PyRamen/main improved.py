@@ -44,8 +44,9 @@ with open(salespath, 'r') as salesfile:
 
 salesfile.close()
 
-# nested loop through sales and menu to find match, and then accumulate metrics
+# loop through all sales item:
 for sales_item in sales.values():
+    # if item is in menu, accumulate.  Otherwise, print out warning.
     try:
         report[sales_item["Menu_item"]]["01-count"] += sales_item["Quantity"]
         report[sales_item["Menu_item"]]["02-revenue"] += menu[sales_item["Menu_item"]]["price"] * sales_item["Quantity"]
