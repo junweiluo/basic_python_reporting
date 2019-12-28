@@ -48,11 +48,10 @@ salesfile.close()
 for sales_item in sales.values():
     # if item is in menu, accumulate.  Otherwise, print out warning.
     try:
-        report[sales_item["Menu_item"]]["01-count"] += sales_item["Quantity"]
         report[sales_item["Menu_item"]]["02-revenue"] += menu[sales_item["Menu_item"]]["price"] * sales_item["Quantity"]
         report[sales_item["Menu_item"]]["03-cogs"] += menu[sales_item["Menu_item"]]['cost'] * sales_item["Quantity"]
         report[sales_item["Menu_item"]]["04-profit"] = report[sales_item["Menu_item"]]["02-revenue"] - report[sales_item["Menu_item"]]["03-cogs"]
-        
+        report[sales_item["Menu_item"]]["01-count"] += sales_item["Quantity"]
     except:
         print(f"{sales_item} does not equal any item on menu! NO MATCH!")   # There is some confusion on the instruction file.
 
