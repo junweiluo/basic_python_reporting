@@ -1,4 +1,4 @@
-import csv
+import pandas as pd
 from pathlib import Path
 
 # find out current directory
@@ -8,10 +8,10 @@ print(f"Current Working Directory: {Path.cwd()}")
 menupath = Path("PyRamen/Resources/menu_data.csv")
 salespath = Path("PyRamen/Resources/sales_data.csv")
 
-# initialize variables of dicts
-menu = {}
-report = {}
+menu = pd.read_csv(menupath)
+sales = pd.read_csv(salespath)
 
+print(sales)
 # open sales and menu data, and put into dicts
 with open(menupath, 'r') as menufile:
     menureader = csv.reader(menufile, delimiter=',')
