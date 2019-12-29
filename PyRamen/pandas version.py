@@ -23,7 +23,7 @@ df_unjoined = df[df["_merge"] != "both"]
 
 df_unjoined_unique = df_unjoined["Menu_Item"].unique()
 
-if df_unjoined_unique.size > 0:
+if len(df_unjoined_unique) > 0:
     for item in df_unjoined_unique:
         print(f"{item} does not equal any item on menu! NO MATCH!")  
 
